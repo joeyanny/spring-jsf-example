@@ -10,46 +10,46 @@
         <h:outputStylesheet library="css" name="user.css"/>
     </h:head>
     <h:body>
-		<h:form>
-			<div id="menu">
-				<h:button styleClass="button" id="view" value="View Users" outcome="userlistview"/>
-				<h:commandButton styleClass="button" id="save" value="Save User" action="#{userController.updateUser()}"/>
-				<h:commandButton styleClass="button" id="delete" value="Delete User" action="#{userController.deleteUser(userController.user.id)}"/>
-	    		<h:button styleClass="button" id="cancel" value="Cancel" outcome="userdisplay"/>
-	    	</div>
-	    	<div id="container">
-				<div id="heading-container">
-					<h1>Edit User</h1>
-				</div>
-				<div class="table">
-		    		<h:inputText styleClass="id_field" value="#{userController.user.id}" />
+        <h:form>
+            <div id="menu">
+                <h:button styleClass="button" id="view" value="View Users" outcome="userlistview"/>
+                <h:commandButton styleClass="button" id="save" value="Save User" action="#{userController.updateUser()}"/>
+                <h:commandButton styleClass="button" id="delete" value="Delete User" action="#{userController.deleteUser(userController.user.id)}"/>
+                <h:button styleClass="button" id="cancel" value="Cancel" outcome="userdisplay"/>
+            </div>
+            <div id="container">
+                <div id="heading-container">
+                    <h1>Edit User</h1>
+                </div>
+                <div class="table">
+                    <h:inputText styleClass="id_field" value="#{userController.user.id}" />
 
-					<div class="row">
-			    		<span class="input thin">First Name:</span>
-			    	    <h:inputText styleClass="input field row" value="#{userController.user.firstName}" />
-			    	</div>
-			    	<div class="row">
-			    	    <span class="input thin">Last Name:</span>
-			    		<h:inputText styleClass="input field row" value="#{userController.user.lastName}" />
-			    	</div>
-			    	<div class="row">
-			    		<span class="input thin">House Number:</span>
-			    		<h:inputText styleClass="input field row" value="#{userController.user.houseNumber}" />
-			    	</div>
-			    	<div class="row">
-			    		<span class="input thin">Street:</span>
-			    		<h:inputText styleClass="input field row" value="#{userController.user.street}" />
-			    	</div>
-			    	<div class="row">
-			    		<span class="input thin">City:</span>
-			    		<h:inputText styleClass="input field row" value="#{userController.user.city}" />
-			    	</div>
-			    	<div class="row">
-			    		<span class="input thin">Postcode:</span>
-			    		<h:inputText styleClass="input field row" value="#{userController.user.postcode}" />
-			    	</div>
-		    	</div>
-	    	</div>
-		</h:form>
+                    <div class="row">
+                        <span class="input thin">First Name:</span>
+                        <h:inputText styleClass="input field row" value="#{userController.user.firstName}" />
+                    </div>
+                    <div class="row">
+                        <span class="input thin">Last Name:</span>
+                        <h:inputText styleClass="input field row" value="#{userController.user.lastName}" />
+                    </div>
+                    <div class="row">
+                        <span class="input thin">House Number:</span>
+                        <h:inputText styleClass="input field row" value="#{userController.user.houseNumber}" />
+                    </div>
+                    <div class="row">
+                        <span class="input thin">Street:</span>
+                        <h:inputText styleClass="input field row" value="#{userController.user.street}" />
+                    </div>
+                    <div class="row">
+                        <span class="input thin">City:</span>
+                        <h:inputText styleClass="input field row" value="#{userController.user.city}" />
+                    </div>
+                    <div class="row">
+                        <span class="input thin">Postcode:</span>
+                        <h:inputText styleClass="input field row" value="#{userController.user.postcode}" />
+                    </div>
+                </div>
+            </div>
+        </h:form>
     </h:body>
 </html>
