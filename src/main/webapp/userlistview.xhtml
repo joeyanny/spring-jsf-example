@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"      
+      xmlns:h="http://java.sun.com/jsf/html">
+ 
+    <h:head>
+        <title>User List</title>
+        <h:outputStylesheet library="css" name="user.css"/>
+    </h:head>
+    <h:body>
+		<h:form>
+			<div id="menu">
+	    		<h:button styleClass="button" value="Add User" outcome="#{userController.addUser()}"/>
+	    	</div>
+	    	<div id="container">
+				<div id="heading-container">
+					<h1>View Users</h1>
+				</div>
+				<div class="table">
+			    	<h:dataTable value="#{userController.userList.userList}" var="userItem">
+			    		<h:column>
+			    			<f:facet styleClass="header" name="header">First Name</f:facet>
+			    			<h:commandLink styleClass="row" action="#{userController.viewUser(userItem.id)}" value="#{userItem.firstName}" />
+			    		</h:column>
+			    		<h:column>
+			    			<f:facet styleClass="header" name="header">Last Name</f:facet>
+			    			<h:commandLink styleClass="row" action="#{userController.viewUser(userItem.id)}" value="#{userItem.lastName}" />
+			    		</h:column>
+			    		<h:column>
+			    			<f:facet styleClass="header" name="header">House Number</f:facet>
+			    			<h:commandLink styleClass="row" action="#{userController.viewUser(userItem.id)}" value="#{userItem.houseNumber}" />
+			    		</h:column>
+			    		<h:column>
+			    			<f:facet styleClass="header" name="header">Street</f:facet>
+			    			<h:commandLink styleClass="row" action="#{userController.viewUser(userItem.id)}" value="#{userItem.street}" />
+			    		</h:column>
+			    		<h:column>
+			    			<f:facet styleClass="header" name="header">City</f:facet>
+			    			<h:commandLink styleClass="row" action="#{userController.viewUser(userItem.id)}" value="#{userItem.city}" />
+			    		</h:column>
+			    		<h:column>
+			    			<f:facet styleClass="header" name="header">Postcode</f:facet>
+			    			<h:commandLink styleClass="row" action="#{userController.viewUser(userItem.id)}" value="#{userItem.postcode}" />
+			    		</h:column>
+			    	</h:dataTable>
+			    </div>
+		    </div>
+		</h:form>
+    </h:body>
+</html>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"      
+      xmlns:h="http://java.sun.com/jsf/html">
+ 
+    <h:head>
+        <title>Add User</title>
+        <h:outputStylesheet library="css" name="user.css"/>
+    </h:head>
+    <h:body>
+		<h:form>
+			<div id="menu">
+				<h:button styleClass="button" value="View Users" outcome="userlistview"/>
+	    		<h:commandButton styleClass="button" value="Save User" action="#{userController.saveUser()}"/>
+		    	<h:button value="Cancel" styleClass="button" outcome="userlistview"/>
+		    </div>
+	    	<div id="container">
+				<div id="heading-container">
+					<h1>Add User</h1>
+				</div>
+				<div class="table">
+					<div class="row">
+						<span class="thin">First Name:</span>
+			    	    <h:inputText styleClass="input field row" value="#{userController.user.firstName}"/>
+		    	    </div>
+		    	    <div class="row">
+			    	    <span class="thin">Last Name:</span>
+			    		<h:inputText styleClass="input field row" value="#{userController.user.lastName}" />
+			    	</div>
+			    	<div class="row">
+			    	    <span class="thin">House Number:</span>
+			    		<h:inputText styleClass="input field row" value="#{userController.user.houseNumber}" />
+			    	</div>
+			    	<div class="row">
+			    	    <span class="thin">Street:</span>
+			    		<h:inputText styleClass="input field row" value="#{userController.user.street}" />
+			    	</div>
+			    	<div class="row">
+			    	    <span class="thin">City:</span>
+			    		<h:inputText styleClass="input field row" value="#{userController.user.city}" />
+			    	</div>
+			    	<div class="row">
+			    	    <span class="thin">Postcode:</span>
+			    		<h:inputText styleClass="input field row" value="#{userController.user.postcode}" />
+			    	</div>
+		    	</div>
+			</div>
+		</h:form>
+    </h:body>
+</html>
