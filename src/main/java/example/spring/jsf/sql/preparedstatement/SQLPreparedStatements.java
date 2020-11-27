@@ -14,104 +14,49 @@ public abstract class SQLPreparedStatements {
      * Run an SQL query using a prepared statement
      */
     public Object runGetQuery(DataSource dataSource, String query) throws SQLException {
-        Object object = null;
-        Connection connection = dataSource.getConnection();
-
-        if(connection != null) {
-            PreparedStatement preparedStatement = connection.prepareStatement(query);
-
-            try {
-                ResultSet resultSet = preparedStatement.executeQuery();
-
-                if(resultSet != null) {
-                    object = getResultsFromResultSet(resultSet);
-                    resultSet.close();
-                }
-
-                preparedStatement.close();
-            }
-            catch (SQLException e) {
-                throw new RuntimeException(e);
-            }
-            finally {
-                if (connection != null) {
-                    connection.close();
-                }
+        try(Connection connection = dataSource.getConnection()) {
+            try(PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+	            try(ResultSet resultSet = preparedStatement.executeQuery()) {
+	                return getResultsFromResultSet(resultSet);
+	            }
             }
         }
-
-        return object;
     }
 
     /**
      * Run query to save a new object
      */
-    public void runSaveQuery(DataSource dataSource, String sqlQuery, List<String> parameters) throws SQLException {
-        Connection connection = null;
-
-        try {
-            connection = dataSource.getConnection();
-
-            PreparedStatement ps = connection.prepareStatement(sqlQuery);
-            setSaveParameters(ps, parameters);
-
-            ps.executeUpdate();
-            ps.close();
-        }
-        catch(SQLException e) {
-            throw new RuntimeException(e);
-        }
-        finally {
-            if (connection != null) {
-                connection.close();
-            }
+    public void runSaveQuery(DataSource dataSource, String query, List<String> parameters) throws SQLException {
+        try(Connection connection = dataSource.getConnection()) {
+        	try(PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+	            setSaveParameters(preparedStatement, parameters);
+	            preparedStatement.executeUpdate();
+        	}
         }
     }
 
     /**
      * Run query to update an existing object
      */
-    public void runUpdateQuery(DataSource dataSource, String sqlQuery, List<String> parameters) throws SQLException {
-        Connection connection = null;
-
-        try {
-            connection = dataSource.getConnection();
-            PreparedStatement ps = connection.prepareStatement(sqlQuery);
-            setUpdateParameters(ps, parameters);
-
-            ps.executeUpdate();
-            ps.close();
-        }
-        catch(SQLException e) {
-            throw new RuntimeException(e);
-        }
-        finally {
-            if (connection != null) {
-                connection.close();
-            }
+    public void runUpdateQuery(DataSource dataSource, String query, List<String> parameters) throws SQLException {
+    	try(Connection connection = dataSource.getConnection()) {
+    		try(PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+	            setUpdateParameters(preparedStatement, parameters);
+	            preparedStatement.executeUpdate();
+	            preparedStatement.close();
+    		}
         }
     }
 
     /**
      * Run query to delete an existing object
      */
-    public void runDeleteQuery(DataSource dataSource, String sqlQuery) throws SQLException {
-        Connection connection = null;
-
-        try {
-            connection = dataSource.getConnection();
-            PreparedStatement ps = connection.prepareStatement(sqlQuery);
-
-            ps.executeUpdate();
-            ps.close();
-        }
-        catch(SQLException e) {
-            throw new RuntimeException(e);
-        }
-        finally {
-            if (connection != null) {
-                connection.close();
-            }
+    public void runDeleteQuery(DataSource dataSource, String query) throws SQLException {
+    	try(Connection connection = dataSource.getConnection()) {
+    		try(PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+    			preparedStatement.executeUpdate();
+    			preparedStatement.close();
+    		}
         }
     }
 

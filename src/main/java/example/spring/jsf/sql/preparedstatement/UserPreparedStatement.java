@@ -12,19 +12,23 @@ public class UserPreparedStatement extends SQLPreparedStatements {
 
     @Override
     public Object getResultsFromResultSet(ResultSet resultSet) throws SQLException {
-        UserEntity row = new UserEntity();
+    	if(resultSet != null) {
+	        UserEntity row = new UserEntity();
+	
+	        if(resultSet.next()) {
+	            row.setId(resultSet.getLong(UserTableKeys.ID.getKey()));
+	            row.setFirstName(resultSet.getString(UserTableKeys.FIRST_NAME.getKey()));
+	            row.setLastName(resultSet.getString(UserTableKeys.LAST_NAME.getKey()));
+	            row.setHouseNumber(resultSet.getString(UserTableKeys.HOUSE_NUMBER.getKey()));
+	            row.setStreet(resultSet.getString(UserTableKeys.STREET.getKey()));
+	            row.setCity(resultSet.getString(UserTableKeys.CITY.getKey()));
+	            row.setPostcode(resultSet.getString(UserTableKeys.POSTCODE.getKey()));
+	        }
+	
+	        return row;
+    	}
 
-        if(resultSet.next()) {
-            row.setId(resultSet.getLong(UserTableKeys.ID.getKey()));
-            row.setFirstName(resultSet.getString(UserTableKeys.FIRST_NAME.getKey()));
-            row.setLastName(resultSet.getString(UserTableKeys.LAST_NAME.getKey()));
-            row.setHouseNumber(resultSet.getString(UserTableKeys.HOUSE_NUMBER.getKey()));
-            row.setStreet(resultSet.getString(UserTableKeys.STREET.getKey()));
-            row.setCity(resultSet.getString(UserTableKeys.CITY.getKey()));
-            row.setPostcode(resultSet.getString(UserTableKeys.POSTCODE.getKey()));
-        }
-
-        return row;
+    	return null;
     }
 
     @Override
