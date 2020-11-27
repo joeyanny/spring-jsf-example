@@ -5,18 +5,18 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-import example.spring.jsf.model.User;
-import example.spring.jsf.model.UserList;
+import example.spring.jsf.dao.UserEntity;
+import example.spring.jsf.dao.UserListEntity;
 import example.spring.jsf.sql.keys.UserTableKeys;
 
 public class UserListPreparedStatement extends SQLPreparedStatements {
 
     @Override
     public Object getResultsFromResultSet(ResultSet resultSet) throws SQLException {
-        UserList rows = new UserList();
+        UserListEntity rows = new UserListEntity();
 
         while(resultSet.next()) {
-            User row = new User();
+        	UserEntity row = new UserEntity();
             row.setId(resultSet.getLong(UserTableKeys.ID.getKey()));
             row.setFirstName(resultSet.getString(UserTableKeys.FIRST_NAME.getKey()));
             row.setLastName(resultSet.getString(UserTableKeys.LAST_NAME.getKey()));

@@ -1,21 +1,13 @@
-package example.spring.jsf.model;
-
-import java.io.Serializable;
-
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+package example.spring.jsf.dao;
 
 import org.springframework.stereotype.Component;
 
 /**
- * Backing bean for the user data object 
+ * Data model defining the structure of the data source.
  */
 @Component
-@ManagedBean
-@SessionScoped
-public class User implements Serializable {
-
-    private Long id;
+public class UserEntity {
+	private Long id;
     private String firstName;
     private String lastName;
     private String houseNumber;

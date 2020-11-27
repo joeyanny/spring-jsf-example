@@ -5,14 +5,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-import example.spring.jsf.model.User;
+import example.spring.jsf.dao.UserEntity;
 import example.spring.jsf.sql.keys.UserTableKeys;
 
 public class UserPreparedStatement extends SQLPreparedStatements {
 
     @Override
     public Object getResultsFromResultSet(ResultSet resultSet) throws SQLException {
-        User row = new User();
+        UserEntity row = new UserEntity();
 
         if(resultSet.next()) {
             row.setId(resultSet.getLong(UserTableKeys.ID.getKey()));
