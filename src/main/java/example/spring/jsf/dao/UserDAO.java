@@ -6,6 +6,8 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Component;
 
 import example.spring.jsf.sql.SQLCommands;
@@ -19,6 +21,8 @@ import example.spring.jsf.sql.preparedstatement.UserPreparedStatement;
 @Component("userDao")
 public class UserDAO {
 
+	private static Logger LOG = LogManager.getLogger(UserDAO.class);
+
     private DataSource dataSource;
 
     /**
@@ -26,6 +30,8 @@ public class UserDAO {
      */
     public UserListEntity getUserList() throws SQLException {
         String sqlQuery = SQLCommands.getGetAllQuery(UserTableKeys.TABLE_NAME.getKey());
+        LOG.debug("Query to get all users: " + sqlQuery);
+
         return (UserListEntity) new UserListPreparedStatement().runGetQuery(dataSource, sqlQuery);
     }
 
@@ -34,6 +40,8 @@ public class UserDAO {
      */
     public UserEntity getUser(long id) throws SQLException {
         String sqlQuery = SQLCommands.getGetRowQuery(UserTableKeys.TABLE_NAME.getKey(), UserTableKeys.ID.getKey(), id);
+        LOG.debug("Query to get user: " + sqlQuery);
+
         return (UserEntity) new UserPreparedStatement().runGetQuery(dataSource, sqlQuery);
     }
 
@@ -42,6 +50,8 @@ public class UserDAO {
      */
     public void saveUser(UserEntity user) throws SQLException {
         String sqlQuery = SQLCommands.getSaveQuery(UserTableKeys.TABLE_NAME.getKey(), UserTableKeys.getKeys(), UserTableKeys.getKeys().size());
+        LOG.debug("Query to save user: " + sqlQuery);
+
         new UserPreparedStatement().runSaveQuery(dataSource, sqlQuery, getParameters(user));
     }
 
@@ -50,6 +60,8 @@ public class UserDAO {
      */
     public void updateUser(UserEntity user) throws SQLException {
         String sqlQuery = SQLCommands.getUpdateQuery(UserTableKeys.TABLE_NAME.getKey(), UserTableKeys.getKeys(), UserTableKeys.ID.getKey(), user.getId());
+        LOG.debug("Query to update user: " + sqlQuery);
+
         new UserPreparedStatement().runUpdateQuery(dataSource, sqlQuery, getParameters(user));
     }
 
@@ -58,6 +70,8 @@ public class UserDAO {
      */
     public void deleteUser(long id) throws SQLException {
         String sqlQuery = SQLCommands.getDeleteQuery(UserTableKeys.TABLE_NAME.getKey(), UserTableKeys.ID.getKey(), id);
+        LOG.debug("Query to delete user: " + sqlQuery);
+
         new UserPreparedStatement().runDeleteQuery(dataSource, sqlQuery);
     }
 
