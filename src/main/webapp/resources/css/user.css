@@ -57,13 +57,45 @@ h1 {
 	padding: 20px;
 }
 
+table {
+    width: 50%;
+    border-spacing: 5px;
+}
+
 .table {
 	width: 100%;
 	margin: 5%;
+	margin-top: 3%;
 	padding: 0%;
 	border-width: 0px;
 	border-collapse:collapse;
 	display:block;
+}
+
+tr {
+    font-size: 14px;
+	height: 30px;
+	color: #ddd;
+}
+
+th {
+    padding: 3%;
+    background-color: #0c0c0c;
+    min-width: 50px;
+}
+
+td {
+    padding: 3%;
+    background-color: #2d2d2d;
+}
+
+td > a {
+    color: #ddd;
+    text-decoration: none;
+}
+
+form {
+    margin: 0%;
 }
 
 .header {
@@ -74,7 +106,7 @@ h1 {
 .row {
 	font-size: 14px;
 	padding: 10px;
-	width: 200px;
+	width: 230px;
 	border-width: 0px;
 	display:block;
 }
@@ -93,18 +125,18 @@ h1 {
 }
 
 .button {
-	width: 98%;
-	height: 50px;
-	background-image: url(/spring-jsf/javax.faces.resource/menu-button.png.xhtml?ln=images);
-	background-position: center center;
-	background-repeat:no-repeat;
-	background-size: 100% 100%;
-	margin-top: 0%;
-	margin-bottom: 0%;
-	margin-right: 0%;
-	margin-left: 1%;
-	padding: 0%;
-	color: black;
+    width: 98%;
+    height: 50px;
+    background-image: url(/javax.faces.resource/menu-button.png.xhtml?ln=images);
+    background-position: center center;
+    background-repeat:no-repeat;
+    background-size: 100% 100%;
+    margin-top: 2%;
+    margin-bottom: 0%;
+    margin-right: 0%;
+    margin-left: 1%;
+    padding: 0%;
+    color: black;
 }
 
 .submit {
@@ -139,9 +171,10 @@ dd {
 	padding: 0%;
 }
 
-input {
-	margin: 0%;
-	padding: 0%;
+.input {
+    font-size: 14px;
+    height: 40px;
+    color: gray;
 }
 
 .info {
@@ -163,4 +196,87 @@ label {
 	padding: 0%;
 	width: 0%;
 	height: 0px;
+}
+
+.details {
+    margin: 2%;
+}
+
+.details-row {
+    font-size: 14px;
+	border-width: 0px;
+	display:block;
+}
+
+.details-label {
+    font-size: 14px;
+	height: 30px;
+    background-color: #0c0c0c;
+    color: #ddd;
+    padding: 1em;
+    margin: 0.5em;
+    display: inline-block;
+    width: 100px;
+}
+
+.details-value {
+    font-size: 14px;
+	height: 30px;
+    background-color: #2d2d2d;
+    color: #ddd;
+    padding: 1em;
+    display: inline-block;
+    width: 100px;
+}
+
+.error-banner {
+    width: 95%;
+    height: 10px;
+    line-height: 10px;
+    background-color: rgb(150, 0, 0);
+    color: white;
+    margin: 1%;
+    padding: 1%;
+    border: 1px solid firebrick;
+    border-radius: 7px;
+    display: block;
+}
+
+.error-message {
+    width: 95%;
+    height: 10px;
+    line-height: 10px;
+    color: firebrick;
+    margin: 3%;
+    padding: 1%;
+    display: block;
+}
+
+.error-message-large {
+    width: 640px;
+    height: 10px;
+    line-height: 10px;
+    color: firebrick;
+    margin: 1%;
+    padding: 1%;
+    font-size: 24px;
+    font-weight: 900;
+    display: block;
+    text-align: center;
+}
+
+.error-image {
+    background-image: url(/javax.faces.resource/error.png.xhtml?ln=images);
+  	background-repeat: no-repeat;
+  	background-size: contain;
+    margin: 10px;
+    width: 640px;
+    height: 400px;
+}
+
+.error-block {
+    width: 50%;
+    height: 50%;
+    margin-top: 10%;
+    margin-left: 25%;
 }
