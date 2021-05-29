@@ -13,8 +13,23 @@ This will create a Java web application (WAR) artifact within the `target` folde
 **Note:** The `groupId` field in the `pom.xml` will need to be populated for the build to be successful.
 
 ## Running application
-### Apache Tomcat
-1. Download Apache Tomcat.
-2. Copy the WAR from the target folder into `[Tomcat install]/webapps` folder.
-3. Start Tomcat using the start script in `[Tomcat install]/bin` folder.
-4. Open a browser and navigate to `http://localhost:8080/spring-jsf/userlistview.jsf`
+The application is run using Jetty servlet container.
+
+```
+mvn jetty:run
+```
+
+Open a web browser and navigate to the following URL to view the web screens.
+
+```
+http://localhost:8080/users
+```
+
+## Internationalisation
+The locale is defaulted to the user's locale in the session. To change locale append the name of the locale to the URL as a query parameter.
+
+```
+http://localhost:8082/users?locale=[locale]
+```
+
+This will load the matching `message_[locale].properties` from the resources folder.

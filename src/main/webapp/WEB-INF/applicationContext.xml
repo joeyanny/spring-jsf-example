@@ -6,34 +6,58 @@
        xmlns:mvc="http://www.springframework.org/schema/mvc"
        xmlns:jd="http://www.springframework.org/schema/jdbc"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.0.xsd">
-    
+
     <context:annotation-config />
-    
+
     <context:component-scan base-package="example.spring.jsf"/>
 
     <mvc:annotation-driven />
 
-    <bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping"/>
-    
+    <!-- Internationalisation locale resolver -->
+    <bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver">
+        <property name="defaultLocale" value="en"/>
+    </bean>
+
+    <!-- Enables changing of locale -->
+    <bean id="localeChangeInterceptor" class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+        <property name="paramName" value="locale"/>
+    </bean>
+
+    <!-- Add interceptors into the execution chain to intercept incoming requests before they reach the controller -->
+    <bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping">
+        <property name="interceptors">
+            <list>
+                <ref bean="traceabilityInterceptor"/>
+                <ref bean="localeChangeInterceptor"/>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="traceabilityInterceptor" class="example.spring.jsf.interceptor.TraceabilityInterceptor"/>
+
      <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<property name="driverClassName" value="org.h2.Driver"/>
-		<property name="url" value="jdbc:h2:mem:test;DB_CLOSE_DELAY=-1;MVCC=true;INIT=runscript from 'classpath:CreateTable.sql'"/>
-		<property name="username" value="sa"/>
-		<property name="password" value=""/>
-	</bean>
+        <property name="driverClassName" value="org.h2.Driver"/>
+        <property name="url" value="jdbc:h2:mem:test;DB_CLOSE_DELAY=-1;MVCC=true;INIT=runscript from 'classpath:CreateTable.sql'"/>
+        <property name="username" value="sa"/>
+        <property name="password" value=""/>
+    </bean>
 
     <bean id="userDao" class="example.spring.jsf.dao.UserDAO">
         <property name="dataSource" ref="dataSource"/>
     </bean>
 
-	<bean id="userTransformer" class="example.spring.jsf.transformer.UserTransformer"></bean>
+    <bean id="userTransformer" class="example.spring.jsf.transformer.UserTransformer"></bean>
 
-	<bean id="userService" class="example.spring.jsf.service.UserService">
-		<property name="userDao" ref="userDao"/>
-		<property name="userTransformer" ref="userTransformer"/>
-	</bean>
+    <bean id="userService" class="example.spring.jsf.service.UserService">
+        <property name="userDao" ref="userDao"/>
+        <property name="userTransformer" ref="userTransformer"/>
+    </bean>
 
-	<bean id="userController" class="example.spring.jsf.controller.UserController">
-		<property name="userService" ref="userService"/>
-	</bean>
+    <bean id="characterValidator" class="example.spring.jsf.validator.CharacterValidator">
+        <constructor-arg name="regex" value="[A-Za-z-\\s]+"/>
+    </bean>
+
+    <bean id="userController" class="example.spring.jsf.controller.UserController">
+        <property name="userService" ref="userService"/>
+    </bean>
 </beans>

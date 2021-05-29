@@ -6,44 +6,75 @@
       xmlns:h="http://java.sun.com/jsf/html">
  
     <h:head>
-        <title>Add User</title>
+        <title>#{messages.add}</title>
         <h:outputStylesheet library="css" name="user.css"/>
     </h:head>
+
     <h:body>
         <h:form>
             <div id="menu">
-                <h:button styleClass="button" value="View Users" outcome="userlistview"/>
-                <h:commandButton styleClass="button" value="Save User" action="#{userController.saveUser()}"/>
-                <h:button value="Cancel" styleClass="button" outcome="userlistview"/>
+                <h:button styleClass="button" value="#{messages['menu.list']}" outcome="userlistview"/>
+                <h:commandButton styleClass="button" value="#{messages['menu.save']}" action="#{userController.saveUser()}"/>
+                <h:button value="#{messages['menu.cancel']}" styleClass="button" outcome="userlistview"/>
             </div>
+
             <div id="container">
                 <div id="heading-container">
-                    <h1>Add User</h1>
+                    <h1>#{messages.add}</h1>
                 </div>
+
+                <h:message for="firstName" errorClass="error-banner"/>
+                <h:message for="lastName" errorClass="error-banner"/>
+                <h:message for="houseNumber" errorClass="error-banner"/>
+                <h:message for="street" errorClass="error-banner"/>
+                <h:message for="city" errorClass="error-banner"/>
+                <h:message for="postcode" errorClass="error-banner"/>
+
                 <div class="table">
                     <div class="row">
-                        <span class="thin">First Name:</span>
-                        <h:inputText styleClass="input field row" value="#{userController.user.firstName}"/>
+                        <span class="thin">#{messages.firstname}</span>
+                        <h:inputText id="firstName" styleClass="input field row" value="#{userController.user.firstName}" required="true" requiredMessage="First name must not be empty">
+                            <f:validator binding="#{characterValidator}"/>
+                        </h:inputText>
+                        <h:message for="firstName" errorClass="error-message"/>
                     </div>
+
                     <div class="row">
-                        <span class="thin">Last Name:</span>
-                        <h:inputText styleClass="input field row" value="#{userController.user.lastName}" />
+                        <span class="thin">#{messages.lastname}</span>
+                        <h:inputText id="lastName" styleClass="input field row" value="#{userController.user.lastName}" required="true" requiredMessage="Last name must not be empty">
+                            <f:validator binding="#{characterValidator}"/>
+                        </h:inputText>
+                        <h:message for="lastName" errorClass="error-message"/>
                     </div>
+
                     <div class="row">
-                        <span class="thin">House Number:</span>
-                        <h:inputText styleClass="input field row" value="#{userController.user.houseNumber}" />
+                        <span class="thin">#{messages.housenumber}</span>
+                        <h:inputText id="houseNumber" styleClass="input field row" value="#{userController.user.houseNumber}" required="true" requiredMessage="House Number must not be empty"/>
+                        <h:message for="houseNumber" errorClass="error-message"/>
                     </div>
+
                     <div class="row">
-                        <span class="thin">Street:</span>
-                        <h:inputText styleClass="input field row" value="#{userController.user.street}" />
+                        <span class="thin">#{messages.street}</span>
+                        <h:inputText id="street" styleClass="input field row" value="#{userController.user.street}" required="true" requiredMessage="Street must not be empty">
+                            <f:validator binding="#{characterValidator}"/>
+                        </h:inputText>
+                        <h:message for="street" errorClass="error-message"/>
                     </div>
+
                     <div class="row">
-                        <span class="thin">City:</span>
-                        <h:inputText styleClass="input field row" value="#{userController.user.city}" />
+                        <span class="thin">#{messages.city}</span>
+                        <h:inputText id="city" styleClass="input field row" value="#{userController.user.city}" required="true" requiredMessage="City must not be empty">
+                            <f:validator binding="#{characterValidator}"/>
+                        </h:inputText>
+                        <h:message for="city" errorClass="error-message"/>
                     </div>
+
                     <div class="row">
-                        <span class="thin">Postcode:</span>
-                        <h:inputText styleClass="input field row" value="#{userController.user.postcode}" />
+                        <span class="thin">#{messages.postcode}</span>
+                        <h:inputText id="postcode" styleClass="input field row" value="#{userController.user.postcode}" required="true" requiredMessage="Postcode must not be empty">
+                            <f:validator binding="#{characterValidator}"/>
+                        </h:inputText>
+                        <h:message for="postcode" errorClass="error-message"/>
                     </div>
                 </div>
             </div>

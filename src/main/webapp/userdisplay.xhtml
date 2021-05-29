@@ -6,44 +6,46 @@
       xmlns:h="http://java.sun.com/jsf/html">
  
     <h:head>
-        <title>User Details</title>
+        <title>#{messages.details}</title>
         <h:outputStylesheet library="css" name="user.css"/>
     </h:head>
     <h:body>
         <h:form>
             <div id="menu">
-                <h:button styleClass="button" value="View Users" outcome="userlistview"/>
-                <h:button styleClass="button" value="Edit User" outcome="useredit"/>
-                <h:commandButton styleClass="button" value="Delete User" action="#{userController.deleteUser(userController.user.id)}"/>
+                <h:button styleClass="button" value="#{messages['menu.list']}" outcome="userlistview"/>
+                <h:button styleClass="button" value="#{messages['menu.edit']}" outcome="useredit"/>
+                <h:commandButton styleClass="button" value="#{messages['menu.delete']}" action="#{userController.deleteUser(userController.user.id)}"/>
             </div>
             <div id="container">
                 <div id="heading-container">
-                    <h1>User Details</h1>
+                    <h1>#{messages.details}</h1>
                 </div>
 
-                <div class="row">
-                    <span class="input thin">First Name:</span>
-                    <h:outputText styleClass="input field row" value="#{userController.user.firstName}"/>
-                </div>
-                <div class="row">
-                    <span class="input thin">Last Name:</span>
-                    <h:outputText styleClass="input field row" value="#{userController.user.lastName}"/>
-                </div>
-                <div class="row">
-                    <span class="input thin">House Number:</span>
-                    <h:outputText styleClass="input field row" value="#{userController.user.houseNumber}"/>
-                </div>
-                <div class="row">
-                    <span class="input thin">Street:</span>
-                    <h:outputText styleClass="input field row" value="#{userController.user.street}"/>
-                </div>
-                <div class="row">
-                    <span class="input thin">City:</span>
-                    <h:outputText styleClass="input field row" value="#{userController.user.city}"/>
-                </div>
-                <div class="row">
-                    <span class="input thin">Postcode:</span>
-                    <h:outputText styleClass="input field row" value="#{userController.user.postcode}"/>
+                <div class="details">
+                    <div class="details-row">
+                        <span class="details-label">#{messages.firstname}</span>
+                        <h:outputText styleClass="details-value" value="#{userController.user.firstName}"/>
+                    </div>
+                    <div class="details-row">
+                        <span class="details-label">#{messages.lastname}</span>
+                        <h:outputText styleClass="details-value" value="#{userController.user.lastName}"/>
+                    </div>
+                    <div class="details-row">
+                        <span class="details-label">#{messages.housenumber}</span>
+                        <h:outputText styleClass="details-value" value="#{userController.user.houseNumber}"/>
+                    </div>
+                    <div class="details-row">
+                        <span class="details-label">#{messages.street}</span>
+                        <h:outputText styleClass="details-value" value="#{userController.user.street}"/>
+                    </div>
+                    <div class="details-row">
+                        <span class="details-label">#{messages.city}</span>
+                        <h:outputText styleClass="details-value" value="#{userController.user.city}"/>
+                    </div>
+                    <div class="details-row">
+                        <span class="details-label">#{messages.postcode}</span>
+                        <h:outputText styleClass="details-value" value="#{userController.user.postcode}"/>
+                    </div>
                 </div>
             </div>
         </h:form>
