@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class UserListEntity {
 
-	private List<UserEntity> userList = new ArrayList<>();
+    private List<UserEntity> userList = new ArrayList<>();
 
     public List<UserEntity> getUserList() {
         return userList;

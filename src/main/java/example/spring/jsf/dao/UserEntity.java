@@ -7,7 +7,8 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class UserEntity {
-	private Long id;
+
+    private Long id;
     private String firstName;
     private String lastName;
     private String houseNumber;
